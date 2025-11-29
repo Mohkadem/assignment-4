@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Contact = () => {
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
+    const [quote, setQuote] = useState("");
+    const [author, setAuthor] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Simple email regex
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(email)) {
@@ -19,19 +19,37 @@ const Contact = () => {
         }
     };
 
+    // Fetch quote from backend
+    const fetchQuote = async () => {
+        try {
+            const response = await fetch("http://localhost:3001/quote");
+            const data = await response.json();
+            setQuote(data.quote);
+            setAuthor(data.author);
+        } catch (err) {
+            console.error("Error in fetching quotes:", err);
+            setQuote("Failed to load quote.");
+            setAuthor("Error :(");
+        }
+    };
+
+    useEffect(() => {
+        fetchQuote();
+    }, []);
+
     return (
         <section
             id="contact"
-            className="mt-20 scroll-mt-20 h-screen flex items-center justify-center bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+            className="mt-20 scroll-mt-20 h-screen flex flex items-center justify-center bg-white dark:bg-gray-900 text-black dark:text-white"
         >
-            <div className="bg-gray-800 rounded-2xl p-10 w-[90%] sm:w-[70%] md:w-[50%] shadow-lg">
-                <h2 className="text-3xl font-bold text-center mb-8">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-10 w-[90%] sm:w-[70%] md:w-[50%] shadow-lg mb-10">
+                <h2 className="text-3xl font-bold text-center mb-8 text-black dark:text-white">
                     Contact Me
                 </h2>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <div>
-                        <label className="block text-sm text-gray-400 mb-2">
+                        <label className="block text-sm text-gray-700 dark:text-gray-400 mb-2">
                             Email
                         </label>
                         <input
@@ -39,10 +57,10 @@ const Contact = () => {
                             placeholder="Enter your email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className={`w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 border ${
+                            className={`w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border ${
                                 error
                                     ? "border-red-500 focus:ring-red-500"
-                                    : "border-gray-600 focus:ring-blue-500"
+                                    : "border-gray-300 dark:border-gray-600 focus:ring-blue-500"
                             } focus:outline-none focus:ring-2 transition`}
                         />
                         {error && (
@@ -51,13 +69,13 @@ const Contact = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm text-gray-400 mb-2">
+                        <label className="block text-sm text-gray-700 dark:text-gray-400 mb-2">
                             Message
                         </label>
                         <textarea
                             placeholder="Drop a message..."
                             rows="4"
-                            className="w-full px-4 py-3 rounded-lg bg-gray-700 text-white placeholder-gray-400 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
+                            className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
                         ></textarea>
                     </div>
 
@@ -68,6 +86,19 @@ const Contact = () => {
                         Send Message
                     </button>
                 </form>
+            </div>
+
+            <div id="quote" className="text-center max-w-sm">
+                {quote && (
+                    <>
+                        <p className="italic text-lg text-black dark:text-white">
+                            "{quote}"
+                        </p>
+                        <p className="font-bold mt-2 text-black dark:text-white">
+                            - {author}
+                        </p>
+                    </>
+                )}
             </div>
         </section>
     );

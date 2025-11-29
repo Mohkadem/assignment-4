@@ -45,10 +45,8 @@ export const works = [
     },
 ];
 export const buttons = [
-    { id: 1, title: "All" },
-    { id: 2, title: "UI/UX" },
-    { id: 3, title: "Web" },
-    { id: 4, title: "React JS" },
+    { id: 1, title: "Date (Ascending)" },
+    { id: 2, title: "Date (Descending)" },
 ];
 export const stepsCard = [
     {

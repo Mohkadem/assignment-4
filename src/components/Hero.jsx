@@ -95,9 +95,9 @@ const Hero = () => {
             <div id="hero" className="scroll-mt-20">
                 <div className="info">
                     <div className="wrapper">
-                        <span className="welcoming">Hey, I am Moh</span>
+                        <span className="welcoming text-black dark:text-white">Hey, I am Moh</span>
                         <br />
-                        <span className="main-title">Web Developer</span>
+                        <span className="main-title text-black dark:text-white">Web Developer</span>
                         <AnimatedText className="animated-text" />
                     </div>
                 </div>
