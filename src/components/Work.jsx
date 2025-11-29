@@ -16,6 +16,42 @@ const Work = () => {
         );
     }, [repos, search]);
 
+    // Sort repos based on active button
+    const sortedRepos = useMemo(() => {
+        if (filteredRepos.length === 0) return [];
+
+        return [...filteredRepos].sort((a, b) => {
+            // Ensure we have created_at field
+            if (!a.created_at || !b.created_at) {
+                if (!a.created_at && !b.created_at) return 0;
+                if (!a.created_at) return 1;
+                if (!b.created_at) return -1;
+            }
+
+            // Parse dates explicitly - GitHub API returns ISO 8601 format (e.g., "2024-01-15T10:30:00Z")
+            // Use Date.parse() for explicit timestamp parsing, then create Date objects
+            const timestampA = Date.parse(a.created_at);
+            const timestampB = Date.parse(b.created_at);
+
+            // Validate timestamps are valid (not NaN)
+            if (isNaN(timestampA) && isNaN(timestampB)) return 0;
+            if (isNaN(timestampA)) return 1; // Invalid date goes to end
+            if (isNaN(timestampB)) return -1; // Invalid date goes to end
+
+            // Direct numeric comparison of timestamps (milliseconds since epoch)
+            // This includes ALL date components: year, month, day, hours, minutes, seconds, milliseconds
+            const comparison = timestampA - timestampB;
+
+            if (active === 1) {
+                // Date (Ascending) - oldest first
+                return comparison;
+            } else {
+                // Date (Descending) - newest first
+                return -comparison;
+            }
+        });
+    }, [filteredRepos, active]);
+
     // Get the current 3 cards to display
     const displayedRepos = sortedRepos.slice(
         currentIndex,
