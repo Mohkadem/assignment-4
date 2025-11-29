@@ -10,7 +10,10 @@ const ThemeToggle = () => {
             return savedTheme;
         }
         // Check system preference
-        if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+        if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+        ) {
             return "light";
         }
         return "dark";
@@ -27,7 +30,12 @@ const ThemeToggle = () => {
     // Apply theme immediately on mount to prevent flash
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
-        const initialTheme = savedTheme || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        const initialTheme =
+            savedTheme ||
+            (window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark");
         document.documentElement.classList.remove("light", "dark");
         document.documentElement.classList.add(initialTheme);
     }, []);
@@ -42,10 +50,9 @@ const ThemeToggle = () => {
     return (
         <button
             onClick={toggleTheme}
-            className="flex items-center gap-2 px-4 py-2 rounded text-black dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded transition-colors"
         >
             {theme === "light" ? <FaMoon size={20} /> : <FaSun size={20} />}
-            {theme === "light" ? "Dark Mode" : "Light Mode"}
         </button>
     );
 };

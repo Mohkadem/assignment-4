@@ -40,18 +40,16 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="mt-20 scroll-mt-20 h-screen flex items-center justify-center bg-white text-black dark:text-white"
+            className="mt-20 scroll-mt-20 h-screen flex items-center justify-center dark:text-gray-200"
         >
-            <div className="bg-gray-100  rounded-2xl p-10 w-[90%] sm:w-[70%] md:w-[50%] shadow-lg mb-10">
-                <h2 className="text-3xl font-bold text-center mb-8 text-black dark:text-gray-100">
+            <div className="dark:bg-gray-100 rounded-2xl p-10 w-[90%] sm:w-[70%] md:w-[50%] shadow-lg mb-10 ">
+                <h2 className="text-3xl font-bold text-center mb-8 dark:text-black">
                     Contact Me
                 </h2>
 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <div>
-                        <label className="block text-sm text-gray-700 dark:text-gray-100 mb-2">
-                            Email
-                        </label>
+                        <label className="block text-sm  mb-2">Email</label>
                         <input
                             type="email"
                             placeholder="Enter your email"
@@ -69,7 +67,7 @@ const Contact = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm text-gray-700 dark:text-gray-100 mb-2">
+                        <label className="block text-sm text-gray-200 dark:text-white mb-2">
                             Message
                         </label>
                         <textarea
@@ -81,7 +79,7 @@ const Contact = () => {
 
                     <button
                         type="submit"
-                        className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition"
+                        className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition text-black dark:text-gray-200"
                     >
                         Send Message
                     </button>
@@ -91,10 +89,10 @@ const Contact = () => {
             <div id="quote" className="text-center max-w-sm">
                 {quote && (
                     <>
-                        <p className="italic text-lg text-black dark:text-gray-100">
+                        <p className="italic text-lg text-gray-500">
                             "{quote}"
                         </p>
-                        <p className="font-bold mt-2 text-black dark:text-gray-100">
+                        <p className="font-bold mt-2 text-gray-500">
                             - {author}
                         </p>
                     </>

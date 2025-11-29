@@ -56,13 +56,13 @@ const Header = () => {
         // className="fixed top-0 left-0 w-full z-50 p-4 "
         <nav id="main" className="mt-4">
             <div className="flex justify-between items-center">
-                <span className="title text-black dark:text-gray-200">Portfolio</span>
+                <span className="title">Portfolio</span>
                 <ul className="flex gap-6">
                     {headerLinks.map((e) => (
                         <li className="nav-links" key={e.id}>
-                            <a 
+                            <a
                                 href={`#${e.id}`}
-                                className="text-black dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                             >
                                 {e.title}
                             </a>

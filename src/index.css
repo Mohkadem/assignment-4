@@ -15,10 +15,10 @@ html {
     scroll-behavior: smooth;
     background-color: white;
 }
-html:not(.dark) {
-    color: #000000 !important; /* pure black for light mode */
-}
-html.dark {
+/* html:not(.dark) {
+    color: #000000 !important;
+} */
+.dark {
     background-color: #121212;
     color: white;
 }
@@ -26,27 +26,10 @@ body {
     overflow-x: hidden;
     background-color: inherit;
 }
-body:not(.dark) {
-    color: #000000 !important; /* pure black for light mode */
-}
-body.dark {
-    color: white;
-}
-/* Force pure black text in light mode - override all gray text colors */
-html:not(.dark) .text-gray-900,
-html:not(.dark) .text-gray-800,
-html:not(.dark) .text-gray-700,
-html:not(.dark) .text-gray-600,
-html:not(.dark) .text-gray-500,
-html:not(.dark) .text-gray-400 {
-    color: #000000 !important;
-}
 /* Ensure text-black is always pure black */
-.text-black {
-    color: #000000 !important;
-}
+
 /* Force black on common text elements in light mode */
-html:not(.dark) p:not(.text-white):not([class*="text-white"]),
+/* html:not(.dark) p:not(.text-white):not([class*="text-white"]),
 html:not(.dark) h1:not(.text-white):not([class*="text-white"]),
 html:not(.dark) h2:not(.text-white):not([class*="text-white"]),
 html:not(.dark) h3:not(.text-white):not([class*="text-white"]),
@@ -55,9 +38,9 @@ html:not(.dark) a:not(.text-white):not([class*="text-white"]),
 html:not(.dark) li:not(.text-white):not([class*="text-white"]),
 html:not(.dark) label:not(.text-white):not([class*="text-white"]) {
     color: #000000 !important;
-}
+} */
 body::selection {
-    @apply bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100;
+    @apply text-blue-900;
 }
 /* Utilities to avoid repetitive code */
 @utility flex-center {
@@ -146,7 +129,7 @@ body::selection {
         @apply grid grid-cols-3 gap-4;
     }
     #work .card {
-        @apply flex flex-col justify-center items-center bg-gray-200  text-black dark:text-white w-[250px] h-[250px] rounded-2xl hover:cursor-pointer hover:bg-blue-400 transition shadow-md;
+        @apply flex flex-col justify-center items-center bg-gray-200 text-black w-[250px] h-[250px] rounded-2xl hover:cursor-pointer hover:bg-blue-400 transition shadow-md;
     }
     .buttons {
         @apply flex justify-around w-[60%] mx-auto my-10;

@@ -1,5 +1,4 @@
 import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { SplitText } from "gsap/all";
 import { useEffect } from "react";
 // Components
@@ -95,18 +94,13 @@ const Hero = () => {
             <div id="hero" className="scroll-mt-20">
                 <div className="info">
                     <div className="wrapper">
-                        <span className="welcoming text-black dark:text-gray-200">Hey, I am Moh</span>
+                        <span className="welcoming ">Hey, I am Moh</span>
                         <br />
-                        <span className="main-title text-black dark:text-gray-200">Web Developer</span>
+                        <span className="main-title">Web Developer</span>
                         <AnimatedText className="animated-text" />
                     </div>
                 </div>
-                {/* <div className="box">
-                    <p>
-                        “Simplicity is the soul of efficiency.” <br />{" "}
-                        <span>— Austin Freeman</span>
-                    </p>
-                </div> */}
+
                 <div className="absolute right-5 -bottom-15">
                     <svg width="400" height="400" viewBox="0 0 400 400">
                         <path
@@ -116,15 +110,11 @@ const Hero = () => {
                             stroke="rgba(255,255,255,0.1)"
                         />
                     </svg>
-
                     <SiReact className="react absolute w-8 h-8" />
                     <SiJavascript className="js w-8 h-8" />
                     <SiTailwindcss className="tailwind w-8 h-8" />
                     <SiFigma className="figma w-8 h-8" />
                 </div>
-
-                {/* <img className="cloud-right" src="../src/assets/2.svg" alt="" />
-                <img className="cloud-left" src="../src/assets/2.svg" alt="" /> */}
             </div>
         </>
     );

@@ -17,14 +17,14 @@ const Steps = () => {
                         return (
                             <div
                                 key={step.title}
-                                className="flex items-start gap-6 bg-gray-100  p-6 rounded-xl"
+                                className="flex items-start gap-6 bg-gray-200 p-6 rounded-xl dark:bg-blue-600"
                             >
                                 <Icon className="text-4xl text-blue-500 shrink-0" />
                                 <div>
                                     <h3 className="text-xl font-semibold text-black dark:text-gray-200">
                                         {step.title}
                                     </h3>
-                                    <p className="text-gray-700 dark:text-gray-300">
+                                    <p className="text-black dark:text-gray-200">
                                         {step.disc}
                                     </p>
                                     <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
