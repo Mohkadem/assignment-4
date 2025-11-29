@@ -135,7 +135,7 @@ const Work = () => {
                     placeholder="Search works...."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="px-4 py-2 rounded-lg border border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="px-4 py-2 rounded-lg border border-black dark:border-white bg-white  text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
             <section className="w-full px-4">
@@ -163,7 +163,7 @@ const Work = () => {
                                         .join(" ")}`}
                                     link={r.html_url}
                                     createdAt={r.created_at}
-                                    className="bg-gray-100 dark:bg-gray-800"
+                                    className="bg-gray-100 "
                                 />
                             ))
                         ) : (

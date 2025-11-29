@@ -7,7 +7,7 @@ const Card = ({ title, disc, img, createdAt, link }) => {
                 <p className="text-black dark:text-white">{disc}</p>
                 <p className="text-black dark:text-white">{`Date: ${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`}</p>
                 <a href={link}>
-                    <button className="bg-gray-500 hover:bg-gray-400 dark:hover:bg-gray-600 p-2 rounded-2xl hover:cursor-pointer w-full text-white transition-colors">
+                    <button className="bg-blue-500 hover:bg-blue-600 p-2 rounded-2xl hover:cursor-pointer w-full text-white transition-colors">
                         See More..
                     </button>
                 </a>
