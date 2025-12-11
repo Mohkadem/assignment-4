@@ -94,15 +94,15 @@ const Hero = () => {
             <div id="hero" className="scroll-mt-20">
                 <div className="info">
                     <div className="wrapper">
-                        <span className="welcoming ">Hey, I am Moh</span>
+                        <span className="welcoming text-lg sm:text-xl md:text-2xl">Hey, I am Moh</span>
                         <br />
                         <span className="main-title">Web Developer</span>
                         <AnimatedText className="animated-text" />
                     </div>
                 </div>
 
-                <div className="absolute right-5 -bottom-15">
-                    <svg width="400" height="400" viewBox="0 0 400 400">
+                <div className="hidden md:block absolute right-5 -bottom-15">
+                    <svg width="400" height="400" viewBox="0 0 400 400" className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]">
                         <path
                             id="path"
                             d="M 200,0 A 200,200 0 1,1 199.9,0"
@@ -110,10 +110,10 @@ const Hero = () => {
                             stroke="rgba(255,255,255,0.1)"
                         />
                     </svg>
-                    <SiReact className="react absolute w-8 h-8" />
-                    <SiJavascript className="js w-8 h-8" />
-                    <SiTailwindcss className="tailwind w-8 h-8" />
-                    <SiFigma className="figma w-8 h-8" />
+                    <SiReact className="react absolute w-6 h-6 lg:w-8 lg:h-8" />
+                    <SiJavascript className="js w-6 h-6 lg:w-8 lg:h-8" />
+                    <SiTailwindcss className="tailwind w-6 h-6 lg:w-8 lg:h-8" />
+                    <SiFigma className="figma w-6 h-6 lg:w-8 lg:h-8" />
                 </div>
             </div>
         </>

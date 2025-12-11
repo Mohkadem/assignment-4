@@ -1,7 +1,10 @@
 import { FaPencilRuler, FaCode, FaRocket } from "react-icons/fa";
 
-// API Base URL - uses environment variable or falls back to production URL
-export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://assignment-4-4xu4.onrender.com";
+// API Base URL - automatically uses localhost in development, production URL in production
+// Can be overridden with VITE_API_BASE_URL environment variable
+export const API_BASE_URL = 
+    import.meta.env.VITE_API_BASE_URL || 
+    (import.meta.env.DEV ? "http://localhost:3001" : "https://assignment-4-4xu4.onrender.com");
 
 export const headerLinks = [
     {

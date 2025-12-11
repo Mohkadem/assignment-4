@@ -65,22 +65,22 @@ body::selection {
         @apply text-4xl md:text-6xl;
     }
     nav div {
-        @apply flex-between flex-col py-2 px-5 container mx-auto md:flex-row md:p-6 lg:px-8;
+        @apply flex-between flex-col sm:flex-row py-2 px-4 sm:px-5 container mx-auto md:p-6 lg:px-8;
     }
     nav .title {
-        @apply font-extrabold text-2xl;
+        @apply font-extrabold text-xl sm:text-2xl;
     }
     nav div ul {
-        @apply flex-between gap-5;
+        @apply flex-between gap-3 sm:gap-5;
     }
     nav div ul li {
         @apply hover:cursor-pointer;
     }
     #hero {
-        @apply relative  mt-[40px] h-[calc(100vh-120px)] overflow-hidden;
+        @apply relative mt-[40px] sm:mt-[40px] min-h-[calc(100vh-120px)] sm:h-[calc(100vh-120px)] overflow-hidden;
     }
     #hero .info {
-        @apply ml-[3rem] flex justify-start w-[90%];
+        @apply ml-4 sm:ml-8 md:ml-[3rem] flex justify-start w-[95%] sm:w-[90%];
     }
     #hero p {
         @apply max-w-[600px];
@@ -89,10 +89,10 @@ body::selection {
         /* @apply mb-3; */
     }
     #hero span.sentence {
-        @apply text-6xl;
+        @apply text-3xl sm:text-4xl md:text-6xl;
     }
     #hero .wrapper {
-        @apply flex flex-col  items-start;
+        @apply flex flex-col items-start;
     }
     .circles {
         @apply relative top-10 left-0 bg-purple-400 h-[500px] w-[500px];
@@ -126,13 +126,13 @@ body::selection {
         @apply absolute -left-15 bottom-28;
     } */
     .cards {
-        @apply grid grid-cols-3 gap-4;
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
     }
     #work .card {
-        @apply flex flex-col justify-center items-center bg-gray-200 text-black w-[250px] h-[250px] rounded-2xl hover:cursor-pointer hover:bg-blue-400 transition shadow-md;
+        @apply flex flex-col justify-center items-center bg-gray-200 text-black w-full sm:w-[250px] h-auto min-h-[200px] sm:h-[250px] rounded-2xl hover:cursor-pointer hover:bg-blue-400 transition shadow-md p-4;
     }
     .buttons {
-        @apply flex justify-around w-[60%] mx-auto my-10;
+        @apply flex flex-col sm:flex-row justify-center sm:justify-around gap-3 sm:gap-0 w-full sm:w-[60%] mx-auto my-6 sm:my-10;
     }
     .button {
         @apply bg-transparent border p-2 rounded-[10px] cursor-pointer;

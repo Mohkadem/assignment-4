@@ -7,7 +7,25 @@ const Work = () => {
     const [search, setSearch] = useState("");
     const [repos, setRepos] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const CARDS_PER_PAGE = 3;
+    
+    // Responsive cards per page: 1 on mobile, 2 on tablet, 3 on desktop
+    const [cardsPerPage, setCardsPerPage] = useState(3);
+    
+    useEffect(() => {
+        const updateCardsPerPage = () => {
+            if (window.innerWidth < 640) {
+                setCardsPerPage(1);
+            } else if (window.innerWidth < 1024) {
+                setCardsPerPage(2);
+            } else {
+                setCardsPerPage(3);
+            }
+        };
+        
+        updateCardsPerPage();
+        window.addEventListener('resize', updateCardsPerPage);
+        return () => window.removeEventListener('resize', updateCardsPerPage);
+    }, []);
 
     // Filter repos based on search
     const filteredRepos = useMemo(() => {
@@ -52,10 +70,10 @@ const Work = () => {
         });
     }, [filteredRepos, active]);
 
-    // Get the current 3 cards to display
+    // Get the current cards to display based on screen size
     const displayedRepos = sortedRepos.slice(
         currentIndex,
-        currentIndex + CARDS_PER_PAGE
+        currentIndex + cardsPerPage
     );
 
     // Reset index when search or sort changes
@@ -66,21 +84,21 @@ const Work = () => {
     // Navigation functions
     const handleNext = useCallback(() => {
         setCurrentIndex((prev) => {
-            if (prev + CARDS_PER_PAGE < sortedRepos.length) {
-                return prev + CARDS_PER_PAGE;
+            if (prev + cardsPerPage < sortedRepos.length) {
+                return prev + cardsPerPage;
             }
             return prev;
         });
-    }, [sortedRepos.length]);
+    }, [sortedRepos.length, cardsPerPage]);
 
     const handlePrevious = useCallback(() => {
         setCurrentIndex((prev) => {
             if (prev > 0) {
-                return Math.max(0, prev - CARDS_PER_PAGE);
+                return Math.max(0, prev - cardsPerPage);
             }
             return prev;
         });
-    }, []);
+    }, [cardsPerPage]);
 
     // Handle arrow key navigation
     useEffect(() => {
@@ -115,12 +133,12 @@ const Work = () => {
     }, []);
 
     return (
-        <div id="work" className="work h-screen overflow-hidden scroll-mt-20">
-            <div className="buttons">
+        <div id="work" className="work min-h-screen py-10 overflow-hidden scroll-mt-20">
+            <div className="buttons flex flex-col sm:flex-row gap-3 sm:gap-0">
                 {buttons.map((e) => (
                     <button
                         key={e.id}
-                        className={`button ${
+                        className={`button text-sm sm:text-base px-3 sm:px-4 py-2 ${
                             active === e.id ? "bg-blue-400" : "bg-transparent"
                         } text-black dark:text-white border-black dark:border-white`}
                         onClick={() => setActive(e.id)}
@@ -129,17 +147,17 @@ const Work = () => {
                     </button>
                 ))}
             </div>
-            <div className="search">
+            <div className="search px-4 sm:px-0">
                 <input
                     type="text"
                     placeholder="Search works...."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="px-4 py-2 rounded-lg border border-black dark:border-white bg-white text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full sm:w-auto px-4 py-2 rounded-lg border border-black dark:border-white bg-white text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
-            <section className="w-full px-4">
-                <div className="flex items-center justify-center gap-2 md:gap-4 w-full">
+            <section className="w-full px-2 sm:px-4">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2 md:gap-4 w-full">
                     <button
                         onClick={handlePrevious}
                         disabled={currentIndex === 0}
@@ -152,7 +170,7 @@ const Work = () => {
                     >
                         ←
                     </button>
-                    <div className="cards flex justify-between w-[70%] ">
+                    <div className="cards flex flex-col sm:flex-row justify-center sm:justify-between gap-4 w-full sm:w-[70%] px-2">
                         {displayedRepos.length > 0 ? (
                             displayedRepos.map((r) => (
                                 <Card
@@ -163,11 +181,11 @@ const Work = () => {
                                         .join(" ")}`}
                                     link={r.html_url}
                                     createdAt={r.created_at}
-                                    className="text-black"
+                                    className="text-black w-full sm:w-auto"
                                 />
                             ))
                         ) : (
-                            <p className="text-center col-span-full text-black dark:text-white">
+                            <p className="text-center col-span-full text-black dark:text-white w-full">
                                 No Repos Found.
                             </p>
                         )}
@@ -175,10 +193,10 @@ const Work = () => {
                     <button
                         onClick={handleNext}
                         disabled={
-                            currentIndex + CARDS_PER_PAGE >= sortedRepos.length
+                            currentIndex + cardsPerPage >= sortedRepos.length
                         }
                         className={`p-2 md:p-3 rounded-lg text-sm md:text-base shrink-0 ${
-                            currentIndex + CARDS_PER_PAGE >= sortedRepos.length
+                            currentIndex + cardsPerPage >= sortedRepos.length
                                 ? "bg-gray-400 cursor-not-allowed opacity-50"
                                 : "bg-blue-500 hover:bg-blue-600 cursor-pointer"
                         } text-white transition-colors`}
@@ -188,10 +206,10 @@ const Work = () => {
                     </button>
                 </div>
                 {sortedRepos.length > 0 && (
-                    <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+                    <div className="mt-4 text-center text-xs sm:text-sm text-gray-600 dark:text-gray-400 px-4">
                         Showing {currentIndex + 1}-
                         {Math.min(
-                            currentIndex + CARDS_PER_PAGE,
+                            currentIndex + cardsPerPage,
                             sortedRepos.length
                         )}{" "}
                         of {sortedRepos.length} repos

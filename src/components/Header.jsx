@@ -6,6 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
     const [glassy, setGlassy] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     // Animate elements in the header
     // useEffect(() => {
     //     const tl = gsap.timeline();
@@ -53,16 +54,18 @@ const Header = () => {
     }, [glassy]);
 
     return (
-        // className="fixed top-0 left-0 w-full z-50 p-4 "
         <nav id="main" className="mt-4">
             <div className="flex justify-between items-center">
                 <span className="title">Portfolio</span>
-                <ul className="flex gap-6">
+                
+                {/* Desktop Navigation */}
+                <ul className="hidden md:flex gap-6">
                     {headerLinks.map((e) => (
                         <li className="nav-links" key={e.id}>
                             <a
                                 href={`#${e.id}`}
                                 className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {e.title}
                             </a>
@@ -70,6 +73,38 @@ const Header = () => {
                     ))}
                     <ThemeToggle />
                 </ul>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="md:hidden flex flex-col gap-1.5 z-50"
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle menu"
+                >
+                    <span className={`w-6 h-0.5 bg-current transition-all ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                    <span className={`w-6 h-0.5 bg-current transition-all ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`w-6 h-0.5 bg-current transition-all ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                </button>
+            </div>
+
+            {/* Mobile Navigation Menu */}
+            <div className={`md:hidden fixed top-0 left-0 w-full h-screen bg-white dark:bg-[#121212] z-40 transition-transform duration-300 ${
+                isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}>
+                <div className="flex flex-col items-center justify-center h-full gap-8">
+                    {headerLinks.map((e) => (
+                        <a
+                            key={e.id}
+                            href={`#${e.id}`}
+                            className="text-2xl hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            {e.title}
+                        </a>
+                    ))}
+                    <div className="mt-4">
+                        <ThemeToggle />
+                    </div>
+                </div>
             </div>
         </nav>
     );
