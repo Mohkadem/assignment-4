@@ -1,4 +1,8 @@
 import { FaPencilRuler, FaCode, FaRocket } from "react-icons/fa";
+
+// API Base URL - uses environment variable or falls back to production URL
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://assignment-4-4xu4.onrender.com";
+
 export const headerLinks = [
     {
         id: "hero",

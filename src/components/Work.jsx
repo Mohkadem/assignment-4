@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useMemo } from "react";
-import { works, buttons } from "../../constants/index";
+import { works, buttons, API_BASE_URL } from "../../constants/index";
 import Card from "./Card";
 
 const Work = () => {
@@ -104,7 +104,7 @@ const Work = () => {
     useEffect(() => {
         const fetchRepo = async () => {
             try {
-                const response = await fetch("http://localhost:3001/repo");
+                const response = await fetch(`${API_BASE_URL}/repo`);
                 const data = await response.json();
                 setRepos(data);
             } catch (err) {

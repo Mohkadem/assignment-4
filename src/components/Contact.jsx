@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { API_BASE_URL } from "../../constants/index";
 
 const Contact = () => {
     const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const Contact = () => {
     // Fetch quote from backend
     const fetchQuote = async () => {
         try {
-            const response = await fetch("http://localhost:3001/quote");
+            const response = await fetch(`${API_BASE_URL}/quote`);
             const data = await response.json();
             setQuote(data.quote);
             setAuthor(data.author);
